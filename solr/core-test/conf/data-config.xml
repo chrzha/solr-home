@@ -1,0 +1,17 @@
+<dataConfig>
+    <dataSource type="JdbcDataSource"
+              driver="org.postgresql.Driver"
+              url="jdbc:postgresql://127.0.0.1/test"
+              user="postgres"
+              password="admin" />
+    <document>
+        <entity name="users" pk="id" transformer="DateFormatTransformer"
+            query="select * from users" deltaQuery="select id from users where last_modified_time > '${dataimporter.last_index_time}'">
+            <field column="id" name="id" />
+            <field column="age" name="age" />
+            <field column="username" name="username" />
+            <field column="nicename" name="nicename" />
+            <field column="last_modified_time" name="last_modified_time" />
+        </entity>
+    </document>
+</dataConfig>
