@@ -6,7 +6,9 @@
               password="admin" />
     <document>
         <entity name="users" pk="id" transformer="DateFormatTransformer"
-            query="select * from users" deltaQuery="select id from users where last_modified_time > '${dataimporter.last_index_time}'">
+            query="select * from users" 
+            deltaQuery="select id from users where last_modified_time > '${dataimporter.last_index_time}'"
+            deltaImportQuery="select id, username, nicename, description, last_modified_time from users where id='${dataimporter.delta.id}'">
             <field column="id" name="id" />
             <field column="age" name="age" />
             <field column="username" name="username" />
